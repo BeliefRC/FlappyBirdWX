@@ -30,7 +30,9 @@ export class Main {
         this.dataStore
             .put('background', Background)
             .put('land', Land)
-            .put('pencil', []);
+            .put('pencils', []);
+        //游戏运行前创建一组铅笔
+        this.director.createPencils();
         //运行动画
         this.director.run();
     }
