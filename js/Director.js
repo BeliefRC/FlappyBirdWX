@@ -23,21 +23,28 @@ export class Director {
     }
 
     run() {
-        this.dataStore.get('background').draw();
-        let pencils = this.dataStore.get('pencils');
-
-        if (pencils[0].dx < (this.dataStore.canvas.width - pencils[0].dWidth) / 2 && pencils.length === 2) {
-            this.createPencils();
+        if (!this.isGameover) {
+            this.dataStore.get('background').draw();
+            let pencils = this.dataStore.get('pencils');
+            if (pencils[0].dx < (this.dataStore.canvas.width - pencils[0].dWidth) / 2 && pencils.length === 2) {
+                this.createPencils();
+            }
+            if (pencils.length === 4 && pencils[0].dx === -pencils[0].dWidth) {
+                pencils.splice(0, 2);
+            }
+            pencils.map(pencil => {
+                pencil.draw()
+            });
+            this.dataStore.get('land').draw();
+            this.dataStore.get('birds').draw();
+            let timer = requestAnimationFrame(() => {
+                this.run()
+            });
+            this.dataStore.put('timer', timer)
+        } else {
+            let timer = this.dataStore.get('timer');
+            cancelAnimationFrame(timer);
+            this.dataStore.destroy();
         }
-        if (pencils.length === 4 && pencils[0].dx === -pencils[0].dWidth) {
-            pencils.splice(0, 2);
-        }
-        pencils.map(pencil => {
-            pencil.draw()
-        });
-        this.dataStore.get('land').draw();
-        let timer = requestAnimationFrame(() => {
-            this.run()
-        })
     }
 }

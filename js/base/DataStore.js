@@ -23,4 +23,8 @@ export class DataStore {
         this.spritesMap.set(key, value);
         return this
     }
+
+    destroy() {
+        this.spritesMap.clear()
+    }
 }
