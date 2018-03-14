@@ -11,12 +11,12 @@ export class DataStore {
     }
 
     //根据key从精灵map中取出数据
-    get(key) {
+    getSprite(key) {
         return this.spritesMap.get(key)
     }
 
     //添加精灵到精灵map中
-    put(key, value) {
+    putSprite(key, value) {
         if (Object.prototype.toString.call(value) === '[object Function]') {
             value = new value()
         }

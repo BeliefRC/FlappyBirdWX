@@ -14,25 +14,26 @@ export class Birds extends Sprite {
         this.height = 24;
         this.dx = canvas.width / 4;
         this.dy = canvas.height / 2;
-        //需要使用小鸟的序号，每过count帧更换一次小鸟，下落的时间
+        this.temporaryY = canvas.height / 2;
+        //需要使用小鸟的序号;每过count帧更换一次小鸟;下落的时间
         this.index = 0;
         this.count = 0;
         this.time = 0;
     }
 
     draw() {
-        const image = Sprite.getImage('birds'), g = 0.98, offsetUp = 6
-        ;
+        const image = Sprite.getImage('birds'), g = 0.4, offsetUp = 30;
+        this.time++;
         this.count++;
         if (this.count === 5) {
             this.index++;
-            this.time++;
             this.count = 0;
         }
         if (this.index === 3) {
             this.index = 0;
         }
-        this.dy += (g * this.time * (this.time-offsetUp)) / 2;
+        let offsetY = (g * this.time * (this.time - offsetUp)) / 2;
+        this.dy = this.temporaryY + offsetY;
         super.draw(image,
             this.sxArr[this.index], this.sy,
             this.width, this.height,

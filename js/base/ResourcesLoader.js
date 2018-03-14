@@ -8,7 +8,7 @@ export class ResourcesLoader {
         //存放图片资源
         this.resourcesMap = new Map(Resource);
         for (let [key, value] of this.resourcesMap) {
-            const image = new Image();
+            const image = wx.createImage();
             image.src = value;
             this.resourcesMap.set(key, image)
         }

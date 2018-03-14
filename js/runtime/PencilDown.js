@@ -8,8 +8,8 @@ export class PencilDown extends Pencil {
     }
 
     draw() {
-        //1/5图片高度
-        let gap = this.dHeight / 5;
+        //1/4图片高度
+        let gap = (this.dHeight / 4) + 10;
         this.dy = this.top + gap;
         super.draw();
     }
