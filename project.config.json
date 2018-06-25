@@ -10,7 +10,7 @@
 	"compileType": "game",
 	"libVersion": "game",
 	"appid": "touristappid",
-	"projectname": "FlappyBirdMiniGanme",
+	"projectname": "FlappyBirdWX",
 	"isGameTourist": true,
 	"condition": {
 		"search": {
